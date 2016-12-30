@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 
 /**
  * Examples:
@@ -18,5 +18,11 @@ export function MockComponent(options: Component): Component {
     outputs: options.outputs
   };
 
-  return Component(metadata)(class _ {});
+  class Mock {}
+
+  options.outputs.forEach((method) => {
+    Mock.prototype[method] = new EventEmitter<Object>();
+  });
+
+  return Component(metadata)(Mock);
 }
