@@ -8,6 +8,8 @@ npm install --save-dev ng2-mock-component
 
 ## Usage
 
+### Mock Component
+
 Just specify the `selector` of the component you wish to mock (along with whatever other
 [metadata properties](https://angular.io/docs/ts/latest/api/core/index/Component-decorator.html)
 you like), and `MockComponent` will supply that component with an empty template (unless you provide
@@ -37,6 +39,41 @@ describe('MyComponent', () => {
   it('works', () => {
     fixture.detectChanges();
     expect(element.query(By.css('my-subcomponent'))).not.toBeNull();
+  });
+});
+```
+
+### Mock Directive
+
+Specify the `selector` and `inputs` of the directive. It is important to put `my-directive` to `inputs` list.
+
+```
+import { TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { MyComponent } from './src/my.component';
+import { MockComponent } from 'ng2-mock-component';
+
+describe('MyComponent', () => {
+  let fixture, element;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        MyComponent,
+        MockComponent({
+          selector: '[my-subdirective]',
+          inputs: ['my-subdirective']
+        })
+      ]
+    });
+
+    fixture = TestBed.createComponent(MyComponent);
+    element = fixture.debugElement;
+  });
+
+  it('works', () => {
+    fixture.detectChanges();
+    expect(component).toBeTruthy();
   });
 });
 ```
