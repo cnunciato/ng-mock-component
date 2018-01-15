@@ -15,7 +15,8 @@ export function MockComponent(options: Component): Component {
     selector: options.selector,
     template: options.template || '',
     inputs: options.inputs,
-    outputs: options.outputs || []
+    outputs: options.outputs || [],
+    exportAs: options.exportAs || ''
   };
 
   class Mock {}
