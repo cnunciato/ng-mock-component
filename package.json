@@ -1,6 +1,6 @@
 {
   "name": "ng2-mock-component",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An Angular 2 module for mocking components.",
   "author": "Christian Nunciato",
   "license": "MIT",
