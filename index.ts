@@ -19,11 +19,13 @@ export function MockComponent(options: Component): Component {
     exportAs: options.exportAs || ''
   };
 
-  class Mock {}
-
-  metadata.outputs.forEach(method => {
-    Mock.prototype[method] = new EventEmitter<any>();
-  });
+  class Mock {
+    constructor() {
+      metadata.outputs.forEach(method => {
+        this[method] = new EventEmitter<any>();
+      });
+    }
+  }
 
   return Component(metadata)(Mock as any);
 }
